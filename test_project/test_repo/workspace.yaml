@@ -1,0 +1,5 @@
+load_from:
+  - python_file:
+      relative_path: test_repo/repos.py
+      location_name: test_repo
+  
