@@ -1,6 +1,7 @@
 """
 https://docs.dagster.io/tutorial/intro-tutorial/single-solid-pipeline
 """
+import os
 import requests
 import csv
 from dagster_celery_k8s import celery_k8s_job_executor
@@ -17,6 +18,12 @@ def hello_cereal(context):
 
     return cereals
 
+@solid
+def print_env(context):
+    context.log.info(str(os.environ.keys()))
+   
+
 @pipeline(mode_defs=celery_mode_defs)
 def hello_cereal_pipeline():
     hello_cereal()
+    print_env()
